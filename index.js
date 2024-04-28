@@ -1,16 +1,13 @@
 #!/usr/bin/env node
 const { program } = require('commander');
-const utils = require('./core/utils')
 const http = require('http');
 const fs = require('fs');
 const request = require('request');
 const path = require('path');
-const http = require('http');
-const fs = require('fs');
-const request = require('request');
-const path = require('path');
-// const bossConfig = require('./boss.config')
 const {getPageHtml} =require('./core')
+const utils = require('./core/utils')
+
+const bossConfig = utils.getConfig()
 
 
 utils.printGreen(
@@ -36,7 +33,7 @@ const pages = bossConfig.pages
 const server = http.createServer(async (req, res) => {
     // console.log('req.url', req.url)
     const config = pages.find(item => item.router === req.url)
-    console.log('req.url', req.url)
+    // console.log('req.url', req.url)
     if (req.url === '/' || req.url === '/index.html') {
         // 读取本地的index.html文件并发送给客户端
         fs.readFile('index.html', (err, data) => {
@@ -76,5 +73,5 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+    utils.printYellow(`Server running on port http://localhost:${PORT}/`);
 });
