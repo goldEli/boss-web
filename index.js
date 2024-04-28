@@ -14,19 +14,33 @@ const bossConfig = utils.getConfig()
  const rootPath = process.cwd();
 
 
-utils.printGreen(
-    Alphabet('BOSS WEB','planar')
-)
 
 program
   .version('1.0.0')
   .description('boss web server')
-//   .option('-d, --dev', 'start server for development')
+  .option('-h, --help', 'how to use')
   .parse(process.argv);
 
-// if (program.dev) {
-//   console.log('Hello, CLI world!');
-// }
+if (program.help) {
+  console.log('当前目录下创建boss.config.json文件');
+  console.log(`
+    {
+        "port": 8888,
+        "pages": [{
+            "router": "/message/exception/listPage",
+            "page": "./pages/message/message_exception_list.html"
+        }]
+    } 
+  
+
+  `);
+  return
+}
+
+
+utils.printGreen(
+    Alphabet('BOSS WEB','planar')
+)
 
 const PORT = bossConfig.port || 8888;
 const pages = bossConfig.pages
