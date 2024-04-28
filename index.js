@@ -9,34 +9,38 @@ const Alphabet = require('alphabetjs')
 const {getPageHtml} =require('./core')
 const utils = require('./core/utils')
 
-const bossConfig = utils.getConfig()
- // 获取命令执行的根路径
- const rootPath = process.cwd();
 
 
 
 program
   .version('1.0.0')
   .description('boss web server')
-  .option('-h, --help', 'how to use')
+//   .option('-c, --config', 'config file')
   .parse(process.argv);
 
-if (program.help) {
-  console.log('当前目录下创建boss.config.json文件');
-  console.log(`
-    {
-        "port": 8888,
-        "pages": [{
-            "router": "/message/exception/listPage",
-            "page": "./pages/message/message_exception_list.html"
-        }]
-    } 
+// if (program.config) {
+//   console.log('当前目录下创建boss.config.json文件');
+//   console.log(`
+//     {
+//         "port": 8888,
+//         "pages": [{
+//             "router": "/message/exception/listPage",
+//             "page": "./pages/message/message_exception_list.html"
+//         }]
+//     } 
   
 
-  `);
-  return
-}
+//   `);
+//   return
+// }
 
+const bossConfig = utils.getConfig()
+// 获取命令执行的根路径
+const rootPath = process.cwd();
+
+if (!bossConfig) {
+    return
+}
 
 utils.printGreen(
     Alphabet('BOSS WEB','planar')

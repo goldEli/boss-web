@@ -38,10 +38,25 @@ function getConfig() {
         const config = JSON.parse(configData);
         return config;
     } catch (error) {
-        printRed('boss.config.json 读取配置文件出错:');
+        // printRed('boss.config.json 读取配置文件出错:');
+        configWarning()
         console.error(error)
         return null;
     }
+}
+
+function configWarning() {
+    printRed('boss.config.json 配置文件不存在或者配置错误，请先配置')
+    printYellow('当前目录下创建boss.config.json文件');
+    console.log(`
+      {
+          "port": 8888,
+          "pages": [{
+              "router": "/message/exception/listPage",
+              "page": "./pages/message/message_exception_list.html"
+          }]
+      } 
+    `);
 }
 
 
@@ -51,7 +66,8 @@ const utils = {
     printGreen,
     printYellow,
     printRed,
-    getConfig
+    getConfig,
+    configWarning
 }
 
 module.exports = utils
