@@ -37,8 +37,9 @@ const server = http.createServer(async (req, res) => {
     const config = pages.find(item => item.router === req.url)
     // console.log('req.url', req.url)
     if (req.url === '/' || req.url === '/index.html') {
+        const htmlPath = path.join(__dirname, 'index.html');
         // 读取本地的index.html文件并发送给客户端
-        fs.readFile('index.html', (err, data) => {
+        fs.readFile(htmlPath, (err, data) => {
             if (err) {
                 res.writeHead(500, {'Content-Type': 'text/plain'});
                 res.end('Internal Server Error');

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="/assets/expand/images/favicon.ico" rel="icon">
+    <title>运营管理平台</title>
+    <link rel="stylesheet" href="/assets/common/libs/layui/css/layui.css?v=20220111"/>
+    <link rel="stylesheet" href="/assets/common/module/admin.css?v=20220111"/>
+</head>
+
+<body class="layui-layout-body">
+
+<div class="layui-layout layui-layout-admin">
+
+    <!-- 头部 -->
+<div class="layui-header">
+    <div class="layui-logo">
+        <!--<img src="/assets/common/images/logo.png"/>-->
+        <i class="layui-icon layui-icon-component"></i>
+        <cite>&nbsp;运营管理平台&emsp;</cite>
+    </div>
+    <ul class="layui-nav layui-layout-left">
+        <li class="layui-nav-item" lay-unselect>
+            <a ew-event="flexible" title="侧边伸缩"><i class="layui-icon layui-icon-shrink-right"></i></a>
+        </li>
+        <li class="layui-nav-item" lay-unselect>
+            <a ew-event="refresh" title="刷新"><i class="layui-icon layui-icon-refresh-3"></i></a>
+        </li>
+
+                <li class="layui-nav-item layui-hide-xs layui-this" lay-unselect><a nav-bind="BASE_SYSTEM">基础功能</a></li>
+
+
+    </ul>
+    <ul class="layui-nav layui-layout-right">
+        <li class="layui-nav-item layui-hide-xs" lay-unselect>
+            <a ew-event="fullScreen" title="全屏"><i class="layui-icon layui-icon-screen-full"></i></a>
+        </li>
+        <li class="layui-nav-item layui-hide-xs" lay-unselect>
+            <a ew-event="lockScreen" title="锁屏" data-url="/system/lock"><i class="layui-icon layui-icon-password"></i></a>
+        </li>
+        <li class="layui-nav-item" lay-unselect>
+            <a>
+                <img src="/system/previewAvatar" class="layui-nav-img">
+                <cite>GM</cite>
+            </a>
+            <dl class="layui-nav-child">
+                <dd lay-unselect>
+                    <a ew-href="/system/user_info">个人中心</a>
+                </dd>
+                <dd lay-unselect>
+                    <a id="setPsw">修改密码</a>
+                </dd>
+                <hr>
+                <div id="languageDiv"></div>
+                <hr>
+                <dd lay-unselect>
+                    <a id="btnLogout">退出</a>
+                </dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item" lay-unselect>
+            <a ew-event="theme" title="主题" data-url="/system/theme"><i class="layui-icon layui-icon-more-vertical"></i></a>
+        </li>
+    </ul>
+</div>
+    <!-- 侧边栏 -->
+<div class="layui-side">
+    <div class="layui-side-scroll">
+
+            <ul class="layui-nav layui-nav-tree arrow2" nav-id="BASE_SYSTEM" lay-shrink="all" lay-filter="admin-side-nav" style="margin-top: 15px;">
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon layui-icon-home"></i>&emsp;<cite>主控面板</cite></a>
+                    <dl class="layui-nav-child">
+                            <dd><a id="firstPageAction" lay-href="/todo/config/page">待办事项</a></dd>
+                            <dd><a lay-href="/system/notice">消息通知</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon-set-sm"></i>&emsp;<cite>平台币手续费打折</cite></a>
+                    <dl class="layui-nav-child">
+                            <dd><a lay-href="/commission/commissionRule/commissionRulePage">打折规则</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon layui-icon-set"></i>&emsp;<cite>系统管理</cite></a>
+                    <dl class="layui-nav-child">
+                            <dd><a lay-href="/mgr">用户管理</a></dd>
+                            <dd><a lay-href="/role">角色管理</a></dd>
+                            <dd><a lay-href="/dept">部门管理</a></dd>
+                            <dd><a lay-href="/position">职位管理</a></dd>
+                            <dd><a lay-href="/dictType">字典管理</a></dd>
+                            <dd><a lay-href="/googleAuth">绑定谷歌</a></dd>
+                            <dd><a lay-href="/menu">菜单管理</a></dd>
+                            <dd><a lay-href="/loginLog">登录日志</a></dd>
+                            <dd><a lay-href="/log">业务日志</a></dd>
+                            <dd><a lay-href="/druid">监控管理</a></dd>
+                            <dd><a lay-href="/notice">通知管理</a></dd>
+                            <dd><a lay-href="/operationLog">操作日志</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon layui-icon-set"></i>&emsp;<cite>手续费分组</cite></a>
+                    <dl class="layui-nav-child">
+                            <dd><a lay-href="/v1/admin/feeRate/specialFeeRateGroup">费率组配置</a></dd>
+                            <dd><a lay-href="/v1/admin/feeRate/specialFeeRateGroup/user">费率组和用户关系</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon layui-icon-code-circle"></i>&emsp;<cite>开发管理</cite></a>
+                    <dl class="layui-nav-child">
+                            <dd><a lay-href="/swagger-ui.html">接口文档</a></dd>
+                            <dd><a lay-href="/sysConfig">参数配置</a></dd>
+                            <dd><a lay-href="/app/multiLangConfigUploadPage">APP多语言文件上传</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon-star-fill"></i>&emsp;<cite>交易员管理</cite></a>
+                    <dl class="layui-nav-child">
+                            <dd><a lay-href="/trace/verify/apply/traceUserVerifyWaitListPage">个人信息待审核</a></dd>
+                            <dd><a lay-href="/trace/verify/history">交易员审核历史</a></dd>
+                            <dd><a lay-href="/trace/traceKing">交易员称号管理</a></dd>
+                            <dd><a lay-href="/trace/verify/apply">交易员审核待审核</a></dd>
+                            <dd><a lay-href="/trace/verify/apply/traceUserVerifyRecordListPage">个人信息审核历史</a></dd>
+                            <dd><a lay-href="/trace/trader/listTraderInfoPage">交易员列表</a></dd>
+                            <dd><a lay-href="/trace/trader/listFollowInfoPage">跟单用户列表</a></dd>
+                            <dd><a lay-href="/trace/trader/traderListRankingPage">交易员排名</a></dd>
+                            <dd><a lay-href="/trace/trader/traceShareListPage">分享分润历史</a></dd>
+                            <dd><a lay-href="/trace/frame">交易员像框设置</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon-flag"></i>&emsp;<cite>新交易员管理</cite></a>
+                    <dl class="layui-nav-child">
+                            <dd><a lay-href="/unimarginTrace/verify/apply/traceUserVerifyWaitListPage">个人信息待审核Pro</a></dd>
+                            <dd><a lay-href="/unimarginTrace/verify/history">交易员审核历史Pro</a></dd>
+                            <dd><a lay-href="/unimarginTrace/verify/apply">交易员审核待审核Pro</a></dd>
+                            <dd><a lay-href="/unimarginTrace/trader/listTraderInfoPage">交易员列表Pro</a></dd>
+                            <dd><a lay-href="/unimarginTrace/trader/traderListRankingPage">交易员排名Pro</a></dd>
+                            <dd><a lay-href="/unimarginTrace/verify/apply/traceUserVerifyRecordListPage">个人信息审核历史Pro</a></dd>
+                            <dd><a lay-href="/unimarginTrace/trader/listFollowInfoPage">跟单用户列表Pro</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon-rmb"></i>&emsp;<cite>OTC管理</cite></a>
+                    <dl class="layui-nav-child">
+                            <dd><a lay-href="/otc/order/list">订单列表</a></dd>
+                            <dd><a lay-href="/otc/order/appeal_list">申诉订单列表</a></dd>
+                            <dd><a lay-href="/otc/currency/list">OTC币种</a></dd>
+                            <dd><a lay-href="/otc/tradingOrder/trading_list">广告单列表</a></dd>
+                            <dd><a lay-href="/otc/user/list">OTC用户列表</a></dd>
+                            <dd><a lay-href="/otc/config/list">OTC配置</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon-username"></i>&emsp;<cite>用户信息管理</cite></a>
+                    <dl class="layui-nav-child">
+                            <dd><a lay-href="/userinfo/user">用户信息列表</a></dd>
+                            <dd><a lay-href="/userinfo/limitListPage">用户行为限制列表</a></dd>
+                            <dd><a lay-href="/userinfo/getUserOpreateHistroyPage">安全操作列表</a></dd>
+                            <dd><a lay-href="/user/del">注销审核</a></dd>
+                            <dd><a lay-href="/userinfo/getLoginRecordPage">用户登录历史</a></dd>
+                            <dd><a lay-href="/userinfo/kyc/listpage">国内用户认证记录</a></dd>
+                            <dd><a lay-href="/wallet/virtualAddressListPage">用户虚拟币地址查询</a></dd>
+                            <dd><a lay-href="/userinfo/system/account/batch/add/page">系统账户管理</a></dd>
+                            <dd><a lay-href="/userinfo/official/list/page">官方渠道验证</a></dd>
+                            <dd><a lay-href="/userinfo/mimic-panel/page">模拟盘APP白名单</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon-star-fill"></i>&emsp;<cite>海外KYC审核</cite></a>
+                    <dl class="layui-nav-child">
+                            <dd><a lay-href="/kyc/haiwaikyc/firstpage">初审列表</a></dd>
+                            <dd><a lay-href="/kyc/haiwaikyc/secondpage">复审列表</a></dd>
+                            <dd><a lay-href="/kyc/haiwaikyc/lastpage">已审核列表</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon-login-qq"></i>&emsp;<cite>充提币管理</cite></a>
+                    <dl class="layui-nav-child">
+                            <dd><a lay-href="/specialLimt/withdrawal">提现特殊配置名单</a></dd>
+                            <dd><a lay-href="/specialLimt/otc">卖币特殊配置名单</a></dd>
+                            <dd><a lay-href="/systemWithdraw">系统提币</a></dd>
+                            <dd><a lay-href="/recharge/compensateListPage">钱包补录</a></dd>
+                            <dd><a lay-href="/rechargeWithdrawStatistics">充提币总表</a></dd>
+                            <dd><a lay-href="/recharge">充值订单</a></dd>
+                            <dd><a lay-href="/userWithdraw">用户提币</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon-star-fill"></i>&emsp;<cite>资金查询</cite></a>
+                    <dl class="layui-nav-child">
+                            <dd><a lay-href="/asset/calculator/listPage">币币结余统计</a></dd>
+                            <dd><a lay-href="/newcontract/finance">合约pro财务记录</a></dd>
+                            <dd><a lay-href="/asset/unimargin">合约Pro用户资产</a></dd>
+                            <dd><a lay-href="/transfer">划转记录</a></dd>
+                            <dd><a lay-href="/asset/spot">币币用户资产</a></dd>
+                            <dd><a lay-href="/asset/contract">合约用户资产</a></dd>
+                            <dd><a lay-href="/finance/record/spot">币币财务记录</a></dd>
+                            <dd><a lay-href="/finance/record/contract">合约财务记录</a></dd>
+                            <dd><a lay-href="/systemAsset">系统资产汇总</a></dd>
+                            <dd><a lay-href="/asset/detailPage">用户资金明细</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon-star-fill"></i>&emsp;<cite>风控管理</cite></a>
+                    <dl class="layui-nav-child">
+                            <dd><a lay-href="/withdrawRisk">提币风控</a></dd>
+                            <dd><a lay-href="/riskLabel">风控标签</a></dd>
+                            <dd><a lay-href="userRiskRelation">风控标签用户表</a></dd>
+                            <dd><a lay-href="/userLabelChanges">用户风控标签变动</a></dd>
+                            <dd><a lay-href="/slippagePoint">滑点设置</a></dd>
+                            <dd><a lay-href="/contract/slippageRecordPage">滑点触发委托单</a></dd>
+                            <dd><a lay-href="/arbitrageRiskSetting">套利风控设置</a></dd>
+                            <dd><a lay-href="/suspectedArbitrageUser">疑似套利用户记录</a></dd>
+                            <dd><a lay-href="/delay/makeMatch">延迟进入撮合订单</a></dd>
+                            <dd><a lay-href="/contractLimitSetting">合约限额设置</a></dd>
+                            <dd><a lay-href="/userPositionLimitConfig">用户持仓限额</a></dd>
+                            <dd><a lay-href="/orderFrequencyLimit">防刷名单</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon-star-fill"></i>&emsp;<cite>消息管理</cite></a>
+                    <dl class="layui-nav-child">
+                            <dd><a lay-href="/message">推送消息</a></dd>
+                            <dd><a lay-href="/innerMessage">站内信</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon-star-fill"></i>&emsp;<cite>资金管理</cite></a>
+                    <dl class="layui-nav-child">
+                            <dd><a lay-href="/asset/systemAccount">系统账户</a></dd>
+                            <dd><a lay-href="/asset/adjust/orderPage">发放回收</a></dd>
+                            <dd><a lay-href="/asset/lock/orderPage">锁仓记录</a></dd>
+                            <dd><a lay-href="/discountCash/orderListPage">用户抵扣金</a></dd>
+                            <dd><a lay-href="/discountCash/logListPage">抵扣金使用记录</a></dd>
+                            <dd><a lay-href="/outWithdrawal">第三方平台发放</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon-star-fill"></i>&emsp;<cite>风控监控</cite></a>
+                    <dl class="layui-nav-child">
+                            <dd><a lay-href="/risk/monitor/userInfo">用户信息</a></dd>
+                            <dd><a lay-href="/risk/monitor/contractPosition">合约持仓监控</a></dd>
+                            <dd><a lay-href="/monitoringRules">监控规则设置</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon-star-fill"></i>&emsp;<cite>合约查询</cite></a>
+                    <dl class="layui-nav-child">
+                            <dd><a lay-href="/contract/accountHold">当前持仓</a></dd>
+                            <dd><a lay-href="/contract/delegateOrder">当前委托</a></dd>
+                            <dd><a lay-href="/contract/historyDelegateOrder">历史委托</a></dd>
+                            <dd><a lay-href="/contract/delegateDealRecord">成交明细</a></dd>
+                            <dd><a lay-href="/contract/changeHistory">仓位变化历史</a></dd>
+                            <dd><a lay-href="/contract/planDelegateOrder">当前计划</a></dd>
+                            <dd><a lay-href="/contract/planDelegateHistoryOrder">历史计划委托</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon-snowflake"></i>&emsp;<cite>币币查询</cite></a>
+                    <dl class="layui-nav-child">
+                            <dd><a lay-href="/spot/dealRecordPage">现货成交记录</a></dd>
+                            <dd><a lay-href="/spot/newDealRecordPage">新现货成交记录</a></dd>
+                            <dd><a lay-href="/spot/delegatePage">委托记录</a></dd>
+                            <dd><a lay-href="/spot/historyDelegate">历史委托</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon-star-fill"></i>&emsp;<cite>合约Pro查询</cite></a>
+                    <dl class="layui-nav-child">
+                            <dd><a lay-href="/newcontract/accountHold">当前持仓</a></dd>
+                            <dd><a lay-href="/newcontract/delegateOrder">当前委托</a></dd>
+                            <dd><a lay-href="/newcontract/historyDelegateOrder">历史委托</a></dd>
+                            <dd><a lay-href="/newcontract/delegateDealRecord">成交明细</a></dd>
+                            <dd><a lay-href="/newcontract/changeHistory">仓位变化历史</a></dd>
+                            <dd><a lay-href="/newcontract/planDelegateOrder">当前计划</a></dd>
+                            <dd><a lay-href="/newcontract/planDelegateHistoryOrder">历史计划委托</a></dd>
+                            <dd><a lay-href="/newcontract/historyPosition">历史仓位</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon-snowflake"></i>&emsp;<cite>BGB管理</cite></a>
+                    <dl class="layui-nav-child">
+                            <dd><a lay-href="/BGB/index">BGB</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon-star-fill"></i>&emsp;<cite>钱包管理</cite></a>
+                    <dl class="layui-nav-child">
+                            <dd><a lay-href="/wallet/withdrawErrorPage">提币异常处理</a></dd>
+                            <dd><a lay-href="/config/coin">币种配置</a></dd>
+                            <dd><a lay-href="/config/coinChain">币种扩展信息</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon-star-fill"></i>&emsp;<cite>活动管理</cite></a>
+                    <dl class="layui-nav-child">
+                            <dd><a lay-href="/activity/rankingTraderListPage">榜单活动</a></dd>
+                            <dd><a lay-href="/activity/team">活动战队</a></dd>
+                            <dd><a lay-href="/activity/listRewardGrant">人工奖励确认</a></dd>
+                            <dd><a lay-href="/activity/captain">队长审核</a></dd>
+                            <dd><a lay-href="/activity/personal">比赛申请审核</a></dd>
+                            <dd><a lay-href="/activity/personal/dealListPage">交易量查询</a></dd>
+                            <dd><a lay-href="/activity/operateActivity">活动列表</a></dd>
+                            <dd><a lay-href="/activity/launchpadList">Launchpad</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon-star-fill"></i>&emsp;<cite>安全项管理</cite></a>
+                    <dl class="layui-nav-child">
+                            <dd><a lay-href="/lostsafetyitem/page">安全项列表页</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon-star-fill"></i>&emsp;<cite>配置管理</cite></a>
+                    <dl class="layui-nav-child">
+                            <dd><a lay-href="/dynamic/strategy">动态策略配置</a></dd>
+                            <dd><a lay-href="/appDownloadConfig">App下载地址配置</a></dd>
+                            <dd><a lay-href="/poster">分享海报设置</a></dd>
+                            <dd><a lay-href="/config/contract/coin">合约Icon配置</a></dd>
+                            <dd><a lay-href="/floatingWindow">浮窗管理</a></dd>
+                            <dd><a lay-href="/menuConfig/appHome">APP首页配置</a></dd>
+                            <dd><a lay-href="/menuConfig/helpCenter">APP教程中心</a></dd>
+                            <dd><a lay-href="/common/config">多语言 key 配置</a></dd>
+                            <dd><a lay-href="/config/spotSymbol">交易对配置</a></dd>
+                            <dd><a lay-href="/config/contractSpotSymbol">合约交易对配置</a></dd>
+                            <dd><a lay-href="/config/systemWithdrawAddress">系统提币地址白名单</a></dd>
+                            <dd><a lay-href="/spot/symbolCategory">交易对分类</a></dd>
+                            <dd><a lay-href="/activePictures">web/h5登陆注册页图文链接配置</a></dd>
+                            <dd><a lay-href="/config/jobPositioning/list">招聘岗位配置</a></dd>
+                            <dd><a lay-href="/agency/agentControlConfig">合约入口配置</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon-rate"></i>&emsp;<cite>海外OTC</cite></a>
+                    <dl class="layui-nav-child">
+                            <dd><a lay-href="/overseas/business/list/page">服务商列表</a></dd>
+                            <dd><a lay-href="/overseas/order/list/page">订单列表</a></dd>
+                            <dd><a lay-href="/overseas/currency/list/page">币种列表</a></dd>
+                            <dd><a lay-href="/overseas/fiat/list/page">法币列表</a></dd>
+                            <dd><a lay-href="/overseas/area/list/page">地区列表</a></dd>
+                            <dd><a lay-href="/overseas/payment/list/page">支付方式列表</a></dd>
+                            <dd><a lay-href="/overseas/business/payment/page">运营商支付方式列表</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon-star-fill"></i>&emsp;<cite>运营管理</cite></a>
+                    <dl class="layui-nav-child">
+                            <dd><a lay-href="/indexBanner">Banner</a></dd>
+                            <dd><a lay-href="/article">文章</a></dd>
+                            <dd><a lay-href="/articleType">文章类型</a></dd>
+                            <dd><a lay-href="/suggest/feedback">意见反馈列表</a></dd>
+                            <dd><a lay-href="/userinfo/feedback/">意见反馈</a></dd>
+                            <dd><a lay-href="/common/coinLastPricePage">币种最新价</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon-star-fill"></i>&emsp;<cite>短信管理</cite></a>
+                    <dl class="layui-nav-child">
+                            <dd><a lay-href="/template/listPage">下发短信管理</a></dd>
+                            <dd><a lay-href="/message/exception/listPage">短信异常记录</a></dd>
+                            <dd><a lay-href="/areaCode/areaCodeManagerPage">手机号区号管理</a></dd>
+                            <dd><a lay-href="/captcha/captchaRecordPage">验证码管理</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon-star-fill"></i>&emsp;<cite>法币通道管理</cite></a>
+                    <dl class="layui-nav-child">
+                            <dd><a lay-href="/legal/legalOrder/list">买币订单列表</a></dd>
+                            <dd><a lay-href="/legal/payStrangeRecord/listPage">订单回调异常表</a></dd>
+                            <dd><a lay-href="/legal/legalOrder/sellList">卖U订单列表</a></dd>
+                            <dd><a lay-href="/legal/orderFail/listPage">OTC交易异常记录</a></dd>
+                            <dd><a lay-href="/legal/feeSetting/listPage">手续费设置</a></dd>
+                            <dd><a lay-href="/legal/paymentSetting/listPage">plgpay支付方式限制</a></dd>
+                            <dd><a lay-href="/legal/feeSetting/channelManagement/listPage">渠道管理</a></dd>
+                            <dd><a lay-href="/legal/channleFee/listPage">OTC365汇率配置</a></dd>
+                    </dl>
+                </li>
+            </ul>
+
+    </div>
+</div>
+    <!-- 主体部分 -->
+<div class="layui-body">
+    <div class="layui-tab" lay-allowClose="true" lay-filter="admin-pagetabs">
+        <ul class="layui-tab-title">
+        </ul>
+        <div class="layui-tab-content">
+        </div>
+    </div>
+    <div class="layui-icon admin-tabs-control layui-icon-prev" ew-event="leftPage"></div>
+    <div class="layui-icon admin-tabs-control layui-icon-next" ew-event="rightPage"></div>
+    <div class="layui-icon admin-tabs-control layui-icon-down">
+        <ul class="layui-nav admin-tabs-select" lay-filter="admin-pagetabs-nav">
+            <li class="layui-nav-item" lay-unselect>
+                <a href="javascript:;"></a>
+                <dl class="layui-nav-child layui-anim-fadein">
+                    <dd ew-event="closeThisTabs" lay-unselect><a href="javascript:;">关闭当前标签页</a></dd>
+                    <dd ew-event="closeOtherTabs" lay-unselect><a href="javascript:;">关闭其它标签页</a></dd>
+                    <dd ew-event="closeAllTabs" lay-unselect><a href="javascript:;">关闭全部标签页</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+</div>
+    <!-- 底部 -->
+<div class="layui-footer">
+    Copyright © 2019 <a href="https://www.stylefeng.cn" target="_blank">stylefeng</a> All rights reserved.
+    <span class="pull-right">Version 6.1</span>
+</div>
+
+<div class="site-mobile-shade"></div>
+</div>
+
+<!-- 加载动画，移除位置在common.js中 -->
+<div class="page-loading">
+    <div class="ball-loader">
+        <span></span><span></span><span></span><span></span>
+    </div>
+</div>
+<script type="text/javascript">
+    var Feng = {
+        ctxPath: "",
+        version: '20220111'
+    };
+</script>
+<script type="text/javascript" src="/assets/common/libs/layui/layui.js?v=20220111"></script>
+<script type="text/javascript" src="/assets/common/js/common.js?v=20220111"></script>
+
+<script>
+    layui.use(['layer', 'element', 'admin', 'index', 'ax'], function () {
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var admin = layui.admin;
+        var index = layui.index;
+        var $ax = layui.ax;
+
+        //获取支持的语言列表
+        var ajax = new $ax(Feng.ctxPath + "/translation/languages", function (data) {
+            for (var i = 0; i < data.data.length; i++) {
+                var code = data.data[i].code;
+                var description = data.data[i].description;
+                $("#languageDiv").append('<dd lay-unselect><a id="tran-' + code + '" href="javascript:;">' + description + '</a></dd>');
+
+                //设置监听事件，设置点击按钮切换当前系统语言
+                (function (code) {
+                    $('#tran-' + code).click(function () {
+                        var ajax = new $ax(Feng.ctxPath + "/translation/changeUserTranslation", function (data) {
+                            window.location.href = Feng.ctxPath + "/";
+                        }, function (data) {
+                            layer.msg("切换多语言失败！" + data.responseJSON.message, {icon: 5, anim: 6});
+                        });
+                        ajax.set("code", code);
+                        ajax.start();
+                    });
+                })(code);
+            }
+        }, function (data) {
+            layer.msg("获取语言列表失败！" + data.responseJSON.message, {icon: 5, anim: 6});
+        });
+        ajax.start();
+
+        // 加载当前语言字典并缓存
+        var getUserTranslationAjax = new $ax(Feng.ctxPath + "/translation/getUserTranslation", function (data) {
+            layui.data('system', {
+                key: "lang",
+                value: data.data
+            });
+        }, function (data) {
+            layer.msg("加载语言字典失败！" + data.responseJSON.message, {icon: 5, anim: 6});
+        });
+        getUserTranslationAjax.start();
+
+        // 默认加载主页
+        index.loadHome({
+            menuPath: $("#firstPageAction").attr('lay-href'),
+            menuName: '<i class="layui-icon layui-icon-home"></i>'
+        });
+
+        // 修改密码点击事件
+        $('#setPsw').click(function () {
+
+            //获取多语言
+            var langs = layui.data('system').lang;
+
+            admin.open({
+                id: 'pswForm',
+                type: 2,
+                title: langs.MENU_CHANGE_PASSWORD,
+                shade: 0,
+                content: '/system/user_chpwd'
+            });
+        });
+
+        // 退出登录点击事件
+        $('#btnLogout').click(function () {
+            var ajax = new $ax(Feng.ctxPath + "/logout", function (data) {
+                Feng.success("退出成功!");
+                window.location.href = Feng.ctxPath + "/";
+            }, function (data) {
+                layer.msg("退出失败！" + data.responseJSON.message, {icon: 5, anim: 6});
+            });
+            ajax.start();
+        });
+    });
+</script>
+</body>
+
+</html>
