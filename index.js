@@ -4,16 +4,18 @@ const http = require('http');
 const fs = require('fs');
 const request = require('request');
 const path = require('path');
+const Alphabet = require('alphabetjs')
+
 const {getPageHtml} =require('./core')
 const utils = require('./core/utils')
 
 const bossConfig = utils.getConfig()
+ // 获取命令执行的根路径
+ const rootPath = process.cwd();
 
 
 utils.printGreen(
-    `================\n`+
-    `=   BOSS WEB   =\n`+
-    `================\n`
+    Alphabet('BOSS WEB','planar')
 )
 
 program
@@ -49,7 +51,7 @@ const server = http.createServer(async (req, res) => {
     // 如果是/weex开头的请求，访问当前路径下的assets文件夹并返回js文件
     else if (req.url.startsWith('/weex')) {
 
-      const jsFilePath = path.join(__dirname, req.url.replace('/weex', ''));
+      const jsFilePath = path.join(rootPath, req.url.replace('/weex', ''));
       // console.log(jsFilePath)
       fs.readFile(jsFilePath, (err, data) => {
           if (err) {

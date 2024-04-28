@@ -1,9 +1,10 @@
 const path = require('path');
 const fs = require('fs');
-
+ // 获取命令执行的根路径
+const rootPath = process.cwd();
 
 function getFullPath(p) {
-    return path.join(__dirname.replace('/core', ''), p);
+    return path.join(rootPath, p);
 }
 
 function removeWhitespace(str) {
@@ -26,8 +27,7 @@ function printRed(text) {
 
 
 function getConfig() {
-    // 获取命令执行的根路径
-    const rootPath = process.cwd();
+   
     // 构建配置文件路径
     const configPath = path.join(rootPath, 'boss.config.json');
     

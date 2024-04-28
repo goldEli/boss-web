@@ -33,7 +33,6 @@ async function getJsConfig(s) {
     return new Promise((resolve, reject) => {
         if (match) {
             const ret = match[1].trim()
-            console.log(typeof ret, ret)
             if (!ret) {
                return obj 
             }
