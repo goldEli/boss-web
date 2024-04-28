@@ -6,6 +6,7 @@ const request = require('request');
 const path = require('path');
 const Alphabet = require('alphabetjs')
 const { exec } = require('child_process');
+const packageJson = require('./package.json');
 
 const {getPageHtml} =require('./core')
 const utils = require('./core/utils')
@@ -14,7 +15,7 @@ const utils = require('./core/utils')
 
 
 program
-  .version('1.0.0')
+  .version(packageJson.version)
   .description('boss web server')
 //   .option('-c, --config', 'config file')
   .parse(process.argv);
