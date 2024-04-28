@@ -5,6 +5,7 @@ const fs = require('fs');
 const request = require('request');
 const path = require('path');
 const Alphabet = require('alphabetjs')
+const { exec } = require('child_process');
 
 const {getPageHtml} =require('./core')
 const utils = require('./core/utils')
@@ -96,3 +97,31 @@ const server = http.createServer(async (req, res) => {
 server.listen(PORT, () => {
     utils.printYellow(`Server running on port http://localhost:${PORT}/`);
 });
+
+// 监听当前文件夹的文件变化
+fs.watch('.', { recursive: true }, (eventType, filename) => {
+    console.log(`${filename} file changed`);
+  
+    // 文件发生变化时重启服务器
+    restartServer();
+  });
+  
+  // 重启服务器
+  function restartServer() {
+    // console.log('Restarting server...');
+  
+    // 关闭服务器
+    server.close(() => {
+        utils.printGreen('Server restarted')
+  
+      // 重新执行命令
+      exec('weex-boss', (error, stdout, stderr) => {
+        if (error) {
+          console.error(`exec error: ${error}`);
+          return;
+        }
+        console.log(`stdout: ${stdout}`);
+        console.error(`stderr: ${stderr}`);
+      });
+    });
+  }
