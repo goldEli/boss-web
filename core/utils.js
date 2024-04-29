@@ -25,6 +25,17 @@ function printRed(text) {
     console.log('\x1b[31m' + text + '\x1b[0m');
 }
 
+function fileExists(filePath) {
+    try {
+        // 使用 fs.accessSync() 方法来检查文件是否存在
+        fs.accessSync(filePath, fs.constants.F_OK);
+        return true; // 如果文件存在，则返回true
+    } catch (err) {
+        // 如果文件不存在或者无法访问，则会抛出异常
+        return false;
+    }
+}
+
 
 function getConfig() {
    
@@ -67,7 +78,8 @@ const utils = {
     printYellow,
     printRed,
     getConfig,
-    configWarning
+    configWarning,
+    fileExists
 }
 
 module.exports = utils

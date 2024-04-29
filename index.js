@@ -57,7 +57,11 @@ const server = http.createServer(async (req, res) => {
     const config = pages.find(item => item.router === req.url)
     // console.log('req.url', req.url)
     if (req.url === '/' || req.url === '/index.html') {
-        const htmlPath = path.join(__dirname, 'index.html');
+        // prefer to obtain the local index.html file first.
+        let htmlPath = path.join(rootPath, 'index.html');
+        if (!utils.fileExists(htmlPath)){
+            htmlPath = path.join(__dirname, 'index.html');
+        }
         // 读取本地的index.html文件并发送给客户端
         fs.readFile(htmlPath, (err, data) => {
             if (err) {
