@@ -1,7 +1,20 @@
 const path = require('path');
 const fs = require('fs');
+// const clipboardy = require('clipboardy');
  // 获取命令执行的根路径
 const rootPath = process.cwd();
+
+
+async function readClipboard() {
+//   const text = await clipboardy.read();
+  console.log(text);
+//   return new Promise((resolve, reject) => {
+//     ncp.copy('some text', function () {
+//         // complete...
+//       })
+//   })
+  return text
+}
 
 function getFullPath(p) {
     return path.join(rootPath, p);
@@ -79,7 +92,8 @@ const utils = {
     printRed,
     getConfig,
     configWarning,
-    fileExists
+    fileExists,
+    readClipboard
 }
 
 module.exports = utils

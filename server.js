@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-const { program } = require('commander');
 const http = require('http');
 const fs = require('fs');
 const request = require('request');

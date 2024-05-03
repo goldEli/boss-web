@@ -5,8 +5,8 @@ const path = require('path');
 const Alphabet = require('alphabetjs')
 const nodemon = require('nodemon');
 const packageJson = require('./package.json');
-
 const utils = require('./core/utils')
+const updateHTML = require('./core/updateHTML')
 
 
 
@@ -14,9 +14,13 @@ const utils = require('./core/utils')
 program
   .version(packageJson.version)
   .description('boss web server')
-  //   .option('-c, --config', 'config file')
+  .option('-m, --menu', '更新菜单')
   .parse(process.argv);
-
+  const options = program.opts();
+  if (options.menu) {
+    updateHTML()
+    return
+  }
 
 
 const bossConfig = utils.getConfig()
