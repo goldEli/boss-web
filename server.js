@@ -17,8 +17,9 @@ const pages = bossConfig.pages
 
 
 const server = http.createServer(async (req, res) => {
-    // console.log('req.url', req.url)
-    const config = pages.find(item => item.router === req.url)
+    const config = pages.find(item => item.router === req.url?.split('?')?.[0])
+    // console.log('req.url', req.url, req.url?.split('?')?.[0],config)
+    
     // console.log('req.url', req.url)
     if (req.url === '/' || req.url === '/index.html') {
         // prefer to obtain the local index.html file first.
@@ -59,6 +60,7 @@ const server = http.createServer(async (req, res) => {
     } else {
         // 转发请求到指定的目标地址
         const targetUrl = 'https://stg-boss-web.weex.tech' + req.url;
+        
         req.pipe(request(targetUrl)).pipe(res);
     }
 });
