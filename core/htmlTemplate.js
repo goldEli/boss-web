@@ -1,4 +1,5 @@
-const startTemplate = `
+const startTemplate = function (cssStr='') {
+    return `
     
 <!DOCTYPE html>
 <html class="">
@@ -14,6 +15,7 @@ const startTemplate = `
     <link rel="stylesheet" href="/assets/expand/css/style.css?v=20220111" media="all"/>
 
     <!--其他插件css-->
+    ${cssStr}
 
 </head>
 
@@ -21,6 +23,7 @@ const startTemplate = `
 
 
 `
+}
 
 const middleTemplate = `
 <script type="text/javascript">

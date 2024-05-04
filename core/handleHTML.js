@@ -12,18 +12,54 @@ async function readHTMLFile(filePath) {
     }
 }
 
-function handleStr(str) {
+function handleJsStr(str) {
      str = utils.removeWhitespace(str);
      str = str.replace(/"js"/, "js")
      str = str.replace(/'js'/, "js")
      str = str.replace(/`js`/, "js")
      return str
 }
+function handleCssStr(str) {
+     str = utils.removeWhitespace(str);
+     str = str.replace(/"css"/, "css")
+     str = str.replace(/'css'/, "css")
+     str = str.replace(/`css`/, "css")
+     return str
+}
 
+async function getCssConfig(s) {
+
+    let str = handleCssStr(s)
+    let regex = /css:\s*\[([^\]]*)\]/;
+
+    let match = str.match(regex);
+    let obj = {
+        css: []
+    }
+    return new Promise((resolve, reject) => {
+        if (match) {
+            const ret = match[1].trim()
+            if (!ret) {
+               return obj 
+            }
+            try {
+                
+                const arr = JSON.parse(`[${ret}]`)
+                obj.css = arr
+                resolve(obj)
+            } catch (error) {
+                console.log(error)
+                resolve(obj)
+            }
+        } else {
+            resolve(obj)
+        }
+    })
+}
 
 async function getJsConfig(s) {
 
-    let str = handleStr(s)
+    let str = handleJsStr(s)
     let regex = /js:\s*\[([^\]]*)\]/;
 
     let match = str.match(regex);
@@ -71,6 +107,21 @@ function getJsScript(url) {
     const ret = `<script src="/weex${url}"></script>`
     return ret
 }
+function getCssScript(url) {
+    const ret = `<link href="${url}" rel="stylesheet" type="text/css" />`
+    return ret
+}
+
+async function getCssHtml(str) {
+    const cssConfig = await getCssConfig(str);
+    let ret = ''
+    const arr = cssConfig.css
+    for (let i = 0; i < arr.length; i++) {
+        const url = arr[i];
+        ret += getCssScript(url)
+    }
+    return ret
+}
 
 async function getJsHtml(str) {
     const jsConfig = await getJsConfig(str);
@@ -87,8 +138,9 @@ async function getPageHtml(filePath) {
     const data = await readHTMLFile(filePath);
     const content = await extractHtml(data);
     const jsHtml = await getJsHtml(data);
+    const cssHtml = await getCssHtml(data) 
     return `
-        ${startTemplate}    
+        ${startTemplate(cssHtml)}    
 
         ${content}
 
@@ -103,5 +155,6 @@ async function getPageHtml(filePath) {
 
 module.exports = {
     getPageHtml,
-    getJsConfig
+    getJsConfig,
+    getCssConfig
 }
