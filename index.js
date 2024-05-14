@@ -4,24 +4,19 @@ const { program } = require('commander');
 const path = require('path');
 const Alphabet = require('alphabetjs')
 const nodemon = require('nodemon');
-const packageJson = require('./package.json');
+// const packageJson = require('./package.json');
 const utils = require('./core/utils')
 const updateHTML = require('./core/updateHTML')
 const { version } = require('./package.json');
+// const execSync = require('child_process').execSync;
 
 
-// 检查是否是最新版本
-function checkLatestVersion() {
-  const installedVersion = version;
-  const latestVersion = execSync('npm show hello version').toString().trim();
-  // console.log('最新版本:', latestVersion);
-  if (installedVersion === latestVersion) {
-      // console.log('已经是最新版本！');
-  } else {
-      utils.printYellow(`有新版本可用${latestVersion}！请及时更新`);
-      utils.printYellow(`使用命令 "npm install -g boss-web" 进行更新`);
-  }
-}
+// 创建一个新的进程来执行版本检测
+// const checkVersionProcess = execSync(`node ${path.resolve(__dirname, './core/checkVersion.js')}`);
+
+// checkVersionProcess.stdout.on('data', (data) => {
+//     console.log(data.toString());
+// });
 
 program
   .version(version)
@@ -47,7 +42,6 @@ utils.printGreen(
   Alphabet('BOSS WEB', 'planar')
 )
 
-checkLatestVersion()
 
 // console.log('Restarting server...');
 const indexPath = path.resolve(__dirname, 'server.js')
@@ -72,5 +66,7 @@ nodemon.on('error', function (err) {
 });
 
 
-
+// setTimeout(() => {
+//   checkLatestVersion()
+// })
 

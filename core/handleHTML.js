@@ -13,18 +13,18 @@ async function readHTMLFile(filePath) {
 }
 
 function handleJsStr(str) {
-     str = utils.removeWhitespace(str);
-     str = str.replace(/"js"/, "js")
-     str = str.replace(/'js'/, "js")
-     str = str.replace(/`js`/, "js")
-     return str
+    str = utils.removeWhitespace(str);
+    str = str.replace(/"js"/, "js")
+    str = str.replace(/'js'/, "js")
+    str = str.replace(/`js`/, "js")
+    return str
 }
 function handleCssStr(str) {
-     str = utils.removeWhitespace(str);
-     str = str.replace(/"css"/, "css")
-     str = str.replace(/'css'/, "css")
-     str = str.replace(/`css`/, "css")
-     return str
+    str = utils.removeWhitespace(str);
+    str = str.replace(/"css"/, "css")
+    str = str.replace(/'css'/, "css")
+    str = str.replace(/`css`/, "css")
+    return str
 }
 
 async function getCssConfig(s) {
@@ -40,10 +40,10 @@ async function getCssConfig(s) {
         if (match) {
             const ret = match[1].trim()
             if (!ret) {
-               return obj 
+                return obj
             }
             try {
-                
+
                 const arr = JSON.parse(`[${ret}]`)
                 obj.css = arr
                 resolve(obj)
@@ -70,10 +70,10 @@ async function getJsConfig(s) {
         if (match) {
             const ret = match[1].trim()
             if (!ret) {
-               return obj 
+                return obj
             }
             try {
-                
+
                 const arr = JSON.parse(`[${ret}]`)
                 obj.js = arr
                 resolve(obj)
@@ -88,19 +88,66 @@ async function getJsConfig(s) {
 }
 
 async function extractHtml(str) {
+    let ret = ''
+    const stack = []
+    let index = 0
+    // 第一个括号结束
+    let firstBracketEnd = false
+    // 第一个函数的花括号开始 
+    let firstFunctionBeginsWithCurlyBrackets = false
+    try {
+        while (true) {
+            const char = str[index]
+            ++index
+                // console.log('extractHtml', str[index], stack)
+            if (firstFunctionBeginsWithCurlyBrackets) {
+                ret += char
+            }
+            if (char === '(') {
+                stack.push(char)
+            } else if (char === '{') {
+                stack.push(char)
+                if (firstBracketEnd) {
+                    firstFunctionBeginsWithCurlyBrackets = true
+                }
+            } else if (char === ")") {
+                // console.log('pop)', stack.slice(-1)?.[0] === '(')
+                if (stack.slice(-1)?.[0] === '(') {
+                    stack.pop()
+                    firstBracketEnd = true
+                } else {
+                    stack.push(char)
+                }
+            } else if (char === "}") {
+                // console.log('pop}', char,stack, stack.slice(-1)?.[0] === '{')
+                if (stack.slice(-1)?.[0] === '{') {
+                    stack.pop()
+                    if (stack.length === 0) {
+                        break
+                    }
+                } else {
+                    stack.push(char)
+                }
+            }
+        }
 
-    // 定义正则表达式
-    const regex = /@layout\([^)]*\){([^@]*)@/;
-
-    // 使用正则表达式进行匹配
-    let match = str.match(regex);
-
-    // 输出匹配到的内容
-    if (match) {
-        return match[1].trim();
+    } catch (error) {
+        console.log(error)
     }
 
-    return ''
+    // 定义正则表达式
+    // const regex = /@layout\([^)]*\){([^@]*)@/;
+
+    // 使用正则表达式进行匹配
+    // let match = str.match(regex);
+    // console.log(ret.trim().slice(0, -2))
+
+    // 输出匹配到的内容
+    // if (match) {
+    //     return match[1].trim();
+    // }
+
+    return ret.trim().slice(0, -2)
 }
 
 function getJsScript(url) {
@@ -138,7 +185,7 @@ async function getPageHtml(filePath) {
     const data = await readHTMLFile(filePath);
     const content = await extractHtml(data);
     const jsHtml = await getJsHtml(data);
-    const cssHtml = await getCssHtml(data) 
+    const cssHtml = await getCssHtml(data)
     return `
         ${startTemplate(cssHtml)}    
 
