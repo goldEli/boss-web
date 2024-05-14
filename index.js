@@ -7,12 +7,24 @@ const nodemon = require('nodemon');
 const packageJson = require('./package.json');
 const utils = require('./core/utils')
 const updateHTML = require('./core/updateHTML')
+const { version } = require('./package.json');
 
 
-
+// 检查是否是最新版本
+function checkLatestVersion() {
+  const installedVersion = version;
+  const latestVersion = execSync('npm show hello version').toString().trim();
+  // console.log('最新版本:', latestVersion);
+  if (installedVersion === latestVersion) {
+      // console.log('已经是最新版本！');
+  } else {
+      utils.printYellow(`有新版本可用${latestVersion}！请及时更新`);
+      utils.printYellow(`使用命令 "npm install -g boss-web" 进行更新`);
+  }
+}
 
 program
-  .version(packageJson.version)
+  .version(version)
   .description('boss web server')
   .option('-m, --menu', '更新菜单')
   .parse(process.argv);
@@ -35,6 +47,7 @@ utils.printGreen(
   Alphabet('BOSS WEB', 'planar')
 )
 
+checkLatestVersion()
 
 // console.log('Restarting server...');
 const indexPath = path.resolve(__dirname, 'server.js')
