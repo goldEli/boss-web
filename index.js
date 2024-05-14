@@ -22,7 +22,7 @@ updater({
   // 自定义检查间隔，默认是 1h
   'checkInterval': 24 * 60 * 60 * 1000,
   // 自定义更新提示信息
-  'updateMessage': 'package update from <%=current%> to <%=latest%>.',
+  'updateMessage': '请务必更新到最新版本! package update from <%=current%> to <%=latest%>.',
   // 自定义强制更新的版本更新级别，默认是 major
   'level': 'minor'
 }).then(() => {
