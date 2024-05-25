@@ -88,8 +88,6 @@ async function getJsConfig(s) {
 }
 
 async function extractHtml(str) {
-    console.log("===html")
-    console.log(str)
     let ret = ''
     const stack = []
     let index = 0
