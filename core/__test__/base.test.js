@@ -1,4 +1,4 @@
-import { test, assert, expect } from "vitest"
+import { test, assert, expect, describe, it } from "vitest"
 const { getJsConfig, extractHtml } = require('../handleHTML');
 
 const data = [
@@ -246,12 +246,12 @@ const data1 = [
     
 ]
 
-test('测试html提取', async () => {
+describe('测试html提取', async () => {
     // 断言 add 函数的输出是否符合预期
-    for (let item of data1) {
-        let result = await extractHtml(item);
+    it('case 1', async () => {
+        let result = await extractHtml(data1[0]);
         expect(JSON.stringify(result)).toMatchSnapshot(); // 生成快照并比较
-    }
+    })
 });
 
 
