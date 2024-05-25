@@ -60,7 +60,31 @@ function getConfig() {
         const configData = fs.readFileSync(configPath, 'utf8');
         // 解析 JSON 格式的配置数据
         const config = JSON.parse(configData);
-        return config;
+        return {
+            port: 8888,
+            proxy: 'https://stg-boss-web.weex.tech', 
+            script: `
+            <script type="text/javascript">
+                var Feng = {
+                    ctxPath: "",
+                    version: '20220111'
+                };
+            </script>
+
+            <script type="text/javascript" src="/assets/common/libs/layui/layui.js?v=20220111"></script>
+            <script type="text/javascript" src="/assets/common/js/common.js?v=20220111"></script>
+            `,
+            header: `
+            <meta charset="utf-8"/>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+            <title>管理系统</title>
+            <link rel="stylesheet" href="/assets/common/libs/layui/css/layui.css?v=20220111"/>
+            <link rel="stylesheet" href="/assets/common/module/admin.css?v=20220111" media="all"/>
+            <link rel="stylesheet" href="/assets/expand/css/style.css?v=20220111" media="all"/>
+            `,
+            ...config,
+        };
     } catch (error) {
         // printRed('boss.config.json 读取配置文件出错:');
         configWarning()

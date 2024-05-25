@@ -58,7 +58,7 @@ const server = http.createServer(async (req, res) => {
         res.end(htmlStr);
     } else {
         // 转发请求到指定的目标地址
-        const targetUrl = 'https://stg-boss-web.weex.tech' + req.url;
+        const targetUrl = bossConfig.proxy + req.url;
         
         req.pipe(request(targetUrl)).pipe(res);
     }
