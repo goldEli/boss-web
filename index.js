@@ -6,6 +6,7 @@ const Alphabet = require('alphabetjs')
 const nodemon = require('nodemon');
 const utils = require('./core/utils')
 const updateHTML = require('./core/updateHTML')
+const updateHTMLAgency = require('./core/updateHTMLAgency')
 const updater = require('pkg-updater');
 const pkg = require('./package.json');
 
@@ -35,10 +36,16 @@ function main() {
     .version(pkg.version)
     .description('boss web server')
     .option('-m, --menu', '更新菜单')
+    .option('-am, --agency-menu', '更新agency菜单')
     .parse(process.argv);
   const options = program.opts();
   if (options.menu) {
     updateHTML()
+    return
+  }
+
+  if (options.agencyMenu) {
+    updateHTMLAgency()
     return
   }
 

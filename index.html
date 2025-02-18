@@ -79,9 +79,10 @@
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a><i class="layui-icon layui-icon-set-sm"></i>&emsp;<cite>平台币手续费打折</cite></a>
+                    <a><i class="layui-icon layui-icon-set-sm"></i>&emsp;<cite>VIP权益</cite></a>
                     <dl class="layui-nav-child">
-                            <dd><a lay-href="/commission/commissionRule/commissionRulePage">打折规则</a></dd>
+                            <dd><a lay-href="/commission/commissionRule/commissionRulePage">VIP等级配置</a></dd>
+                            <dd><a lay-href="/commission/contractFeeList">合约手续费打折</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
@@ -111,24 +112,8 @@
                 <li class="layui-nav-item">
                     <a><i class="layui-icon layui-icon layui-icon-code-circle"></i>&emsp;<cite>开发管理</cite></a>
                     <dl class="layui-nav-child">
-                            <dd><a lay-href="/swagger-ui.html">接口文档</a></dd>
                             <dd><a lay-href="/sysConfig">参数配置</a></dd>
                             <dd><a lay-href="/app/multiLangConfigUploadPage">APP多语言文件上传</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a><i class="layui-icon layui-icon-star-fill"></i>&emsp;<cite>交易员管理</cite></a>
-                    <dl class="layui-nav-child">
-                            <dd><a lay-href="/trace/verify/apply/traceUserVerifyWaitListPage">个人信息待审核</a></dd>
-                            <dd><a lay-href="/trace/verify/history">交易员审核历史</a></dd>
-                            <dd><a lay-href="/trace/traceKing">交易员称号管理</a></dd>
-                            <dd><a lay-href="/trace/verify/apply">交易员审核待审核</a></dd>
-                            <dd><a lay-href="/trace/verify/apply/traceUserVerifyRecordListPage">个人信息审核历史</a></dd>
-                            <dd><a lay-href="/trace/trader/listTraderInfoPage">交易员列表</a></dd>
-                            <dd><a lay-href="/trace/trader/listFollowInfoPage">跟单用户列表</a></dd>
-                            <dd><a lay-href="/trace/trader/traderListRankingPage">交易员排名</a></dd>
-                            <dd><a lay-href="/trace/trader/traceShareListPage">分享分润历史</a></dd>
-                            <dd><a lay-href="/trace/frame">交易员像框设置</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
@@ -167,6 +152,7 @@
                             <dd><a lay-href="/userinfo/system/account/batch/add/page">系统账户管理</a></dd>
                             <dd><a lay-href="/userinfo/official/list/page">官方渠道验证</a></dd>
                             <dd><a lay-href="/userinfo/mimic-panel/page">模拟盘APP白名单</a></dd>
+                            <dd><a lay-href="/userinfo/userVip">VIP等级白名单</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
@@ -175,6 +161,8 @@
                             <dd><a lay-href="/kyc/haiwaikyc/firstpage">初审列表</a></dd>
                             <dd><a lay-href="/kyc/haiwaikyc/secondpage">复审列表</a></dd>
                             <dd><a lay-href="/kyc/haiwaikyc/lastpage">已审核列表</a></dd>
+                            <dd><a lay-href="/kyc/sumsub_list">Sumsub认证数据查询</a></dd>
+                            <dd><a lay-href="/kyc/kyc_set">KYC参数配置</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
@@ -208,6 +196,7 @@
                     <a><i class="layui-icon layui-icon-star-fill"></i>&emsp;<cite>风控管理</cite></a>
                     <dl class="layui-nav-child">
                             <dd><a lay-href="/withdrawRisk">提币风控</a></dd>
+                            <dd><a lay-href="/user/emailConfig">邮箱注册黑白名单</a></dd>
                             <dd><a lay-href="/riskLabel">风控标签</a></dd>
                             <dd><a lay-href="userRiskRelation">风控标签用户表</a></dd>
                             <dd><a lay-href="/userLabelChanges">用户风控标签变动</a></dd>
@@ -226,6 +215,7 @@
                     <dl class="layui-nav-child">
                             <dd><a lay-href="/message">推送消息</a></dd>
                             <dd><a lay-href="/innerMessage">站内信</a></dd>
+                            <dd><a lay-href="/newPricePushReminder">新行情波动push提醒</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
@@ -234,10 +224,10 @@
                             <dd><a lay-href="/asset/systemAccount">系统账户</a></dd>
                             <dd><a lay-href="/asset/adjust/orderPage">发放回收</a></dd>
                             <dd><a lay-href="/asset/lock/orderPage">锁仓记录</a></dd>
-                            <dd><a lay-href="/discountCash/orderListPage">用户抵扣金</a></dd>
-                            <dd><a lay-href="/discountCash/logListPage">抵扣金使用记录</a></dd>
+                            <dd><a lay-href="/futuresDiscountCash/logListPage">抵扣金记录</a></dd>
                             <dd><a lay-href="/outWithdrawal">第三方平台发放</a></dd>
                             <dd><a lay-href="/asset/lockup/list">WXT锁仓</a></dd>
+                            <dd><a lay-href="/newcontract/cashGift/limiter">合约Pro体验金限制</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
@@ -294,25 +284,29 @@
                             <dd><a lay-href="/wallet/withdrawErrorPage">提币异常处理</a></dd>
                             <dd><a lay-href="/config/coin">币种配置</a></dd>
                             <dd><a lay-href="/config/coinChain">币种扩展信息</a></dd>
+                            <dd><a lay-href="/wallet/getAutoWithdrawRulePage">提币自动下发规则</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
                     <a><i class="layui-icon layui-icon-star-fill"></i>&emsp;<cite>活动管理</cite></a>
                     <dl class="layui-nav-child">
-                            <dd><a lay-href="/activity/rankingTraderListPage">榜单活动</a></dd>
-                            <dd><a lay-href="/activity/team">活动战队</a></dd>
-                            <dd><a lay-href="/activity/listRewardGrant">人工奖励确认</a></dd>
-                            <dd><a lay-href="/activity/captain">队长审核</a></dd>
-                            <dd><a lay-href="/activity/personal">比赛申请审核</a></dd>
-                            <dd><a lay-href="/activity/personal/dealListPage">交易量查询</a></dd>
+                            <dd><a lay-href="/activity/newComer">新手活动</a></dd>
+                            <dd><a lay-href="/activity/operateLimit">活动个数配置</a></dd>
                             <dd><a lay-href="/activity/operateActivity">活动列表</a></dd>
-                            <dd><a lay-href="/activity/launchpadList">Launchpad</a></dd>
+                            <dd><a lay-href="/activity/operateLottery">转盘抽奖</a></dd>
+                            <dd><a lay-href="/activity/personCompetition">个人交易赛</a></dd>
+                            <dd><a lay-href="/activity/reward">自动发奖</a></dd>
+                            <dd><a lay-href="/activity/checkReward">审核发奖</a></dd>
+                            <dd><a lay-href="/activity/confirmReward">确认发奖</a></dd>
+                            <dd><a lay-href="/activity/launchpadList">WE-Launch</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
                     <a><i class="layui-icon layui-icon-star-fill"></i>&emsp;<cite>安全项管理</cite></a>
                     <dl class="layui-nav-child">
                             <dd><a lay-href="/lostsafetyitem/page">安全项列表页</a></dd>
+                            <dd><a lay-href="/lostsafetyitem/verifySwitchList">人机验证渠道管理</a></dd>
+                            <dd><a lay-href="/area/permission/index">IP地址限制弹窗配置</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
@@ -330,11 +324,18 @@
                             <dd><a lay-href="/config/contractSpotSymbol">合约交易对配置</a></dd>
                             <dd><a lay-href="/config/systemWithdrawAddress">系统提币地址白名单</a></dd>
                             <dd><a lay-href="/spot/symbolCategory">交易对分类</a></dd>
-                            <dd><a lay-href="/activePictures">web/h5登陆注册页图文链接配置</a></dd>
+                            <dd><a lay-href="/activePictures">web登录注册页配置</a></dd>
+                            <dd><a lay-href="/config/registrationSuccessDialog">注册成功弹窗</a></dd>
                             <dd><a lay-href="/config/jobPositioning/list">招聘岗位配置</a></dd>
                             <dd><a lay-href="/agency/agentControlConfig">合约入口配置</a></dd>
                             <dd><a lay-href="/navigationBar">官网导航栏配置</a></dd>
                             <dd><a lay-href="/specificCurrencyPairRatesConfig">特定币对手续费</a></dd>
+                            <dd><a lay-href="/kolShowBar/list">官网首页KOL</a></dd>
+                            <dd><a lay-href="/popular/activity/home_activities">官网首页热门活动配置</a></dd>
+                            <dd><a lay-href="/floatingWindow/home_activities_float">官网首页悬浮窗配置</a></dd>
+                            <dd><a lay-href="/registerRemind/register_confirm_dialog">官网注册挽留弹窗配置</a></dd>
+                            <dd><a lay-href="/thirdLogin/config/ios_google_shortcut"> IOS谷歌快捷方式</a></dd>
+                            <dd><a lay-href="/menuConfig/linkPathManager">跳转路径管理</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
@@ -356,8 +357,11 @@
                             <dd><a lay-href="/mainBanner">MainBanner</a></dd>
                             <dd><a lay-href="/article">文章</a></dd>
                             <dd><a lay-href="/articleType">文章类型</a></dd>
+                            <dd><a lay-href="/community/home">社群管理</a></dd>
+                            <dd><a lay-href="/copyTradingProBanner">跟单pro banner</a></dd>
                             <dd><a lay-href="/suggest/feedback">意见反馈列表</a></dd>
                             <dd><a lay-href="/userinfo/feedback/">意见反馈</a></dd>
+                            <dd><a lay-href="/contractActivity/contractActivity">合约活动配置</a></dd>
                             <dd><a lay-href="/common/coinLastPricePage">币种最新价</a></dd>
                     </dl>
                 </li>
@@ -402,9 +406,9 @@
             <li class="layui-nav-item" lay-unselect>
                 <a href="javascript:;"></a>
                 <dl class="layui-nav-child layui-anim-fadein">
-                    <dd ew-event="closeThisTabs" lay-unselect><a href="javascript:;">关闭当前标签页</a></dd>
-                    <dd ew-event="closeOtherTabs" lay-unselect><a href="javascript:;">关闭其它标签页</a></dd>
-                    <dd ew-event="closeAllTabs" lay-unselect><a href="javascript:;">关闭全部标签页</a></dd>
+                    <dd ew-event="closeThisTabs" lay-unselect><a href="javascript:;" i18n-only="text" i18n="pages.common._body_1">关闭当前标签页</a></dd>
+                    <dd ew-event="closeOtherTabs" lay-unselect><a href="javascript:;" i18n-only="text" i18n="pages.common._body_2">关闭其它标签页</a></dd>
+                    <dd ew-event="closeAllTabs" lay-unselect><a href="javascript:;" i18n-only="text" i18n="pages.common._body_3">关闭全部标签页</a></dd>
                 </dl>
             </li>
         </ul>
@@ -431,85 +435,105 @@
         version: '20220111'
     };
 </script>
+<script type="text/javascript" rel="preload" src="/assets/expand/plugins/jquery/jquery-3.2.1.min.js?v=20220111"></script>
+<script type="text/javascript" rel="preload" src="/assets/expand/plugins/jquery/jquery.i18n.js?v=20220111"></script>
 <script type="text/javascript" src="/assets/common/libs/layui/layui.js?v=20220111"></script>
-<script type="text/javascript" src="/assets/common/js/common.js?v=20220111"></script>
+<script type="text/javascript" rel="preload" src="/assets/common/js/common.js?v=20220111"></script>
+
 
 <script>
-    layui.use(['layer', 'element', 'admin', 'index', 'ax'], function () {
-        var $ = layui.jquery;
-        var layer = layui.layer;
-        var admin = layui.admin;
-        var index = layui.index;
-        var $ax = layui.ax;
+    $(function () {
+        function run(){
+            layui.use(['layer', 'element', 'admin', 'index', 'ax'], function () {
+                var $ = layui.jquery;
+                var layer = layui.layer;
+                var admin = layui.admin;
+                var index = layui.index;
+                var $ax = layui.ax;
+                //获取支持的语言列表
+                var ajax = new $ax(Feng.ctxPath + "/translation/languages", function (data) {
+                    for (var i = 0; i < data.data.length; i++) {
+                        var code = data.data[i].code;
+                        var description = data.data[i].description;
+                        $("#languageDiv").append('<dd lay-unselect><a id="tran-' + code + '" href="javascript:;">' + description + '</a></dd>');
+                        //设置监听事件，设置点击按钮切换当前系统语言
+                        (function (code) {
+                            $('#tran-' + code).click(function () {
+                                var ajax = new $ax(Feng.ctxPath + "/translation/changeUserTranslation", function (data) {
+                                    // window.location.href = Feng.ctxPath + "/";
+                                    const lang = code == '1' ? 'zh_CN' : 'en_US';
+                                    setCookie('i18n_lang', lang);
+                                    location.reload();
+                                }, function (data) {
+                                    layer.msg(parent.$i18n['pages.indexpage_1'] + data.responseJSON.message, {icon: 5, anim: 6});
+                                });
+                                ajax.set("code", code);
+                                ajax.start();
+                            });
+                        })(code);
+                    }
+                }, function (data) {
+                    layer.msg(parent.$i18n['pages.indexpage_2'] + data.responseJSON.message, {icon: 5, anim: 6});
+                });
+                ajax.start();
 
-        //获取支持的语言列表
-        var ajax = new $ax(Feng.ctxPath + "/translation/languages", function (data) {
-            for (var i = 0; i < data.data.length; i++) {
-                var code = data.data[i].code;
-                var description = data.data[i].description;
-                $("#languageDiv").append('<dd lay-unselect><a id="tran-' + code + '" href="javascript:;">' + description + '</a></dd>');
-
-                //设置监听事件，设置点击按钮切换当前系统语言
-                (function (code) {
-                    $('#tran-' + code).click(function () {
-                        var ajax = new $ax(Feng.ctxPath + "/translation/changeUserTranslation", function (data) {
-                            window.location.href = Feng.ctxPath + "/";
-                        }, function (data) {
-                            layer.msg("切换多语言失败！" + data.responseJSON.message, {icon: 5, anim: 6});
-                        });
-                        ajax.set("code", code);
-                        ajax.start();
+                // 加载当前语言字典并缓存
+                var getUserTranslationAjax = new $ax(Feng.ctxPath + "/translation/getUserTranslation", function (data) {
+                    layui.data('system', {
+                        key: "lang",
+                        value: data.data
                     });
-                })(code);
+                }, function (data) {
+                    layer.msg(parent.$i18n['pages.indexpage_3'] + data.responseJSON.message, {icon: 5, anim: 6});
+                });
+                getUserTranslationAjax.start();
+
+                // 默认加载主页
+                index.loadHome({
+                    menuPath: $("#firstPageAction").attr('lay-href'),
+                    menuName: '<i class="layui-icon layui-icon-home"></i>'
+                });
+
+                // 修改密码点击事件
+                $('#setPsw').click(function () {
+
+                    //获取多语言
+                    var langs = layui.data('system').lang;
+
+                    admin.open({
+                        id: 'pswForm',
+                        type: 2,
+                        title: langs.MENU_CHANGE_PASSWORD,
+                        shade: 0,
+                        content: '/system/user_chpwd'
+                    });
+                });
+
+                // 退出登录点击事件
+                $('#btnLogout').click(function () {
+                    var ajax = new $ax(Feng.ctxPath + "/logout", function (data) {
+                        Feng.success(parent.$i18n['pages.indexpage_4']);
+                        window.location.href = Feng.ctxPath + "/";
+                    }, function (data) {
+                        layer.msg(parent.$i18n['pages.indexpage_5'] + data.responseJSON.message, {icon: 5, anim: 6});
+                    });
+                    ajax.start();
+                });
+            });
+        }
+        $("[i18n]").i18n({
+            defaultLang: '',
+            filePath: "/assets/i18n/",
+            filePrefix: "i18n_",
+            fileSuffix: "",
+            forever: true,
+            callback: function () {
+                run();
             }
-        }, function (data) {
-            layer.msg("获取语言列表失败！" + data.responseJSON.message, {icon: 5, anim: 6});
-        });
-        ajax.start();
-
-        // 加载当前语言字典并缓存
-        var getUserTranslationAjax = new $ax(Feng.ctxPath + "/translation/getUserTranslation", function (data) {
-            layui.data('system', {
-                key: "lang",
-                value: data.data
-            });
-        }, function (data) {
-            layer.msg("加载语言字典失败！" + data.responseJSON.message, {icon: 5, anim: 6});
-        });
-        getUserTranslationAjax.start();
-
-        // 默认加载主页
-        index.loadHome({
-            menuPath: $("#firstPageAction").attr('lay-href'),
-            menuName: '<i class="layui-icon layui-icon-home"></i>'
-        });
-
-        // 修改密码点击事件
-        $('#setPsw').click(function () {
-
-            //获取多语言
-            var langs = layui.data('system').lang;
-
-            admin.open({
-                id: 'pswForm',
-                type: 2,
-                title: langs.MENU_CHANGE_PASSWORD,
-                shade: 0,
-                content: '/system/user_chpwd'
-            });
-        });
-
-        // 退出登录点击事件
-        $('#btnLogout').click(function () {
-            var ajax = new $ax(Feng.ctxPath + "/logout", function (data) {
-                Feng.success("退出成功!");
-                window.location.href = Feng.ctxPath + "/";
-            }, function (data) {
-                layer.msg("退出失败！" + data.responseJSON.message, {icon: 5, anim: 6});
-            });
-            ajax.start();
-        });
-    });
+        })
+    })
+    console.log("index.html ->",window);
+    
 </script>
 </body>
 

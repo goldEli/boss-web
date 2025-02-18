@@ -39,8 +39,11 @@ const server = http.createServer(async (req, res) => {
     }
     // 如果是/weex开头的请求，访问当前路径下的assets文件夹并返回js文件
     else if (req.url.startsWith('/weex')) {
+        let resultUrl = req.url.replace('/weex', '')
+        resultUrl = resultUrl.split("?")[0]
 
-        const jsFilePath = path.join(rootPath, req.url.replace('/weex', ''));
+        const jsFilePath = path.join(rootPath, resultUrl);
+        console.log(jsFilePath, req.url)
         // console.log(jsFilePath)
         fs.readFile(jsFilePath, (err, data) => {
             if (err) {

@@ -71,8 +71,10 @@ function getConfig() {
                 };
             </script>
 
+            <script type="text/javascript" rel="preload" src="/assets/expand/plugins/jquery/jquery-3.2.1.min.js?v=20220111"></script>
+            <script type="text/javascript" src="/assets/expand/plugins/jquery/jquery.i18n.js?v=20220111"></script>
             <script type="text/javascript" src="/assets/common/libs/layui/layui.js?v=20220111"></script>
-            <script type="text/javascript" src="/assets/common/js/common.js?v=20220111"></script>
+            <script type="text/javascript" rel="preload" src="/assets/common/js/common.js?v=20220111"></script>
             `,
             header: `
             <meta charset="utf-8"/>
