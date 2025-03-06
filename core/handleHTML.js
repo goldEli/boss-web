@@ -103,6 +103,33 @@ async function extractHtml(str) {
             if (firstFunctionBeginsWithCurlyBrackets) {
                 ret += char
             }
+            // 处理引号
+            if (char === '\'') {
+                if (stack.slice(-1)?.[0] === '\'') {
+                    stack.pop()
+                    continue
+                }
+                stack.push(char)
+                continue
+            }
+            if (char === '"') {
+                if (stack.slice(-1)?.[0] === '"') {
+                    stack.pop()
+                    continue
+                }
+                stack.push(char)
+                continue
+            }
+
+            // 如果在引号中，则直接跳过
+            if (stack.slice(-1)?.[0] === '\'') {
+                continue
+            }
+            if (stack.slice(-1)?.[0] === '"') {
+                continue
+            }
+
+            // 处理括号
             if (char === '(') {
                 stack.push(char)
             } else if (char === '{') {
@@ -133,19 +160,12 @@ async function extractHtml(str) {
 
     } catch (error) {
         console.log(error)
+        return ""
     }
 
-    // 定义正则表达式
-    // const regex = /@layout\([^)]*\){([^@]*)@/;
-
-    // 使用正则表达式进行匹配
-    // let match = str.match(regex);
-    // console.log(ret.trim().slice(0, -2))
-
-    // 输出匹配到的内容
-    // if (match) {
-    //     return match[1].trim();
-    // }
+    if (!ret) {
+        return ""
+    }
 
     return ret.trim().slice(0, -2)
 }
@@ -186,6 +206,7 @@ async function getPageHtml(filePath) {
     const content = await extractHtml(data);
     const jsHtml = await getJsHtml(data);
     const cssHtml = await getCssHtml(data)
+    // console.log(content)
     return `
         ${startTemplate(cssHtml)}    
 

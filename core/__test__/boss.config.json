@@ -1,0 +1,45 @@
+{
+    "port": 8888,
+    "pages": [
+        {
+            "router": "/message/exception/listPage",
+            "page": "./pages/message/message_exception_list.html"
+        },
+        {
+            "router": "/mainBanner",
+            "page": "./pages/mainBanner/mainBannerList.html"
+        },
+        {
+            "router": "/mainBanner/add",
+            "page": "./pages/mainBanner/mainBannerAdd.html"
+        },
+        {
+            "router": "/navigationBar",
+            "page": "./pages/navigationBar/navigationBarList.html"
+        },
+        {
+            "router": "/navigationBar/add",
+            "page": "./pages/navigationBar/navigationBarAdd.html"
+        },
+        {
+            "router": "/specificCurrencyPairRatesConfig",
+            "page": "./pages/specificCurrencyPairRatesConfig/specificCurrencyPairRatesConfig.html"
+        },
+        {
+            "router": "/specificCurrencyPairRatesConfig/add",
+            "page": "./pages/specificCurrencyPairRatesConfig/specificCurrencyPairRatesConfigAdd.html"
+        },
+        {
+            "router": "/innerMessage",
+            "page": "./pages/message/inner_message.html"
+        },
+        {
+            "router": "/innerMessage/addPage",
+            "page": "./pages/message/inner_message_add.html"
+        },
+        {
+            "router": "/innerMessage/detailPage",
+            "page": "./pages/message/inner_message_detail.html"
+        }
+    ]
+  }
