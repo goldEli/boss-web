@@ -44,7 +44,7 @@
         <li class="layui-nav-item" lay-unselect>
             <a>
                 <img src="/system/previewAvatar" class="layui-nav-img">
-                <cite>GM</cite>
+                <cite>RD-public</cite>
             </a>
             <dl class="layui-nav-child">
                 <dd lay-unselect>
@@ -81,25 +81,10 @@
                 <li class="layui-nav-item">
                     <a><i class="layui-icon layui-icon-set-sm"></i>&emsp;<cite>VIP权益</cite></a>
                     <dl class="layui-nav-child">
-                            <dd><a lay-href="/commission/commissionRule/commissionRulePage">VIP等级配置</a></dd>
-                            <dd><a lay-href="/commission/contractFeeList">合约手续费打折</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a><i class="layui-icon layui-icon layui-icon-set"></i>&emsp;<cite>系统管理</cite></a>
-                    <dl class="layui-nav-child">
-                            <dd><a lay-href="/mgr">用户管理</a></dd>
-                            <dd><a lay-href="/role">角色管理</a></dd>
-                            <dd><a lay-href="/dept">部门管理</a></dd>
-                            <dd><a lay-href="/position">职位管理</a></dd>
-                            <dd><a lay-href="/dictType">字典管理</a></dd>
-                            <dd><a lay-href="/googleAuth">绑定谷歌</a></dd>
-                            <dd><a lay-href="/menu">菜单管理</a></dd>
-                            <dd><a lay-href="/loginLog">登录日志</a></dd>
-                            <dd><a lay-href="/log">业务日志</a></dd>
-                            <dd><a lay-href="/druid">监控管理</a></dd>
-                            <dd><a lay-href="/notice">通知管理</a></dd>
-                            <dd><a lay-href="/operationLog">操作日志</a></dd>
+                            <dd><a lay-href="/commission/commissionRule/commissionRulePage">VIP权益</a></dd>
+                            <dd><a lay-href="/commission/contractFeeList">VIP等级配置</a></dd>
+                            <dd><a lay-href="/userinfo/userVip">VIP等级白名单</a></dd>
+                            <dd><a lay-href="/userinfo/batchQuery">VIP用户等级批量查询</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
@@ -126,6 +111,7 @@
                             <dd><a lay-href="/unimarginTrace/trader/traderListRankingPage">交易员排名Pro</a></dd>
                             <dd><a lay-href="/unimarginTrace/verify/apply/traceUserVerifyRecordListPage">个人信息审核历史Pro</a></dd>
                             <dd><a lay-href="/unimarginTrace/trader/listFollowInfoPage">跟单用户列表Pro</a></dd>
+                            <dd><a lay-href="/traderLevelWhitelist/list">交易员等级白名单</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
@@ -152,7 +138,6 @@
                             <dd><a lay-href="/userinfo/system/account/batch/add/page">系统账户管理</a></dd>
                             <dd><a lay-href="/userinfo/official/list/page">官方渠道验证</a></dd>
                             <dd><a lay-href="/userinfo/mimic-panel/page">模拟盘APP白名单</a></dd>
-                            <dd><a lay-href="/userinfo/userVip">VIP等级白名单</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
@@ -175,21 +160,28 @@
                             <dd><a lay-href="/rechargeWithdrawStatistics">充提币总表</a></dd>
                             <dd><a lay-href="/recharge">充值订单</a></dd>
                             <dd><a lay-href="/userWithdraw">用户提币</a></dd>
+                            <dd><a lay-href="/userWithdraw/spot-pro">新版用户提币</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
                     <a><i class="layui-icon layui-icon-star-fill"></i>&emsp;<cite>资金查询</cite></a>
                     <dl class="layui-nav-child">
                             <dd><a lay-href="/asset/calculator/listPage">币币结余统计</a></dd>
+                            <dd><a lay-href="/spot-pro/funding/assets">资金用户资产</a></dd>
                             <dd><a lay-href="/newcontract/finance">合约pro财务记录</a></dd>
                             <dd><a lay-href="/asset/unimargin">合约Pro用户资产</a></dd>
+                            <dd><a lay-href="/spot-pro/funding/audit/transfer">资金划转</a></dd>
+                            <dd><a lay-href="/spot-pro/finance/record">现货pro财务记录</a></dd>
                             <dd><a lay-href="/transfer">划转记录</a></dd>
+                            <dd><a lay-href="/assetFlow/spot-pro">资金财务记录</a></dd>
                             <dd><a lay-href="/asset/spot">币币用户资产</a></dd>
                             <dd><a lay-href="/asset/contract">合约用户资产</a></dd>
                             <dd><a lay-href="/finance/record/spot">币币财务记录</a></dd>
+                            <dd><a lay-href="/assetFlow/spot-pro">币币Pro资产财务记录</a></dd>
                             <dd><a lay-href="/finance/record/contract">合约财务记录</a></dd>
                             <dd><a lay-href="/systemAsset">系统资产汇总</a></dd>
                             <dd><a lay-href="/asset/detailPage">用户资金明细</a></dd>
+                            <dd><a lay-href="/asset/spot-pro">现货pro用户资产</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
@@ -222,12 +214,15 @@
                     <a><i class="layui-icon layui-icon-star-fill"></i>&emsp;<cite>资金管理</cite></a>
                     <dl class="layui-nav-child">
                             <dd><a lay-href="/asset/systemAccount">系统账户</a></dd>
+                            <dd><a lay-href="/asset/spot-pro/systemAccount">现货Pro系统账户</a></dd>
                             <dd><a lay-href="/asset/adjust/orderPage">发放回收</a></dd>
+                            <dd><a lay-href="/asset/spot-pro/adjust/orderPage">现货Pro发放回收</a></dd>
                             <dd><a lay-href="/asset/lock/orderPage">锁仓记录</a></dd>
                             <dd><a lay-href="/futuresDiscountCash/logListPage">抵扣金记录</a></dd>
                             <dd><a lay-href="/outWithdrawal">第三方平台发放</a></dd>
                             <dd><a lay-href="/asset/lockup/list">WXT锁仓</a></dd>
                             <dd><a lay-href="/newcontract/cashGift/limiter">合约Pro体验金限制</a></dd>
+                            <dd><a lay-href="/spot-pro/inner-maker-account/list_page">做市账号配置</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
@@ -257,6 +252,9 @@
                             <dd><a lay-href="/spot/newDealRecordPage">新现货成交记录</a></dd>
                             <dd><a lay-href="/spot/delegatePage">委托记录</a></dd>
                             <dd><a lay-href="/spot/historyDelegate">历史委托</a></dd>
+                            <dd><a lay-href="/spot-pro/dealRecordPage">现货Pro成交记录</a></dd>
+                            <dd><a lay-href="/spot-pro/delegatePage">现货Pro委托记录</a></dd>
+                            <dd><a lay-href="/spot-pro/historyDelegate">现货Pro历史委托</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
@@ -279,9 +277,16 @@
                     </dl>
                 </li>
                 <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon-chart"></i>&emsp;<cite>市场</cite></a>
+                    <dl class="layui-nav-child">
+                            <dd><a lay-href="/config/contract/hot/sort">热力合约榜</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
                     <a><i class="layui-icon layui-icon-star-fill"></i>&emsp;<cite>钱包管理</cite></a>
                     <dl class="layui-nav-child">
                             <dd><a lay-href="/wallet/withdrawErrorPage">提币异常处理</a></dd>
+                            <dd><a lay-href="/config/coin/pro">现货Pro币种配置</a></dd>
                             <dd><a lay-href="/config/coin">币种配置</a></dd>
                             <dd><a lay-href="/config/coinChain">币种扩展信息</a></dd>
                             <dd><a lay-href="/wallet/getAutoWithdrawRulePage">提币自动下发规则</a></dd>
@@ -306,6 +311,7 @@
                     <dl class="layui-nav-child">
                             <dd><a lay-href="/lostsafetyitem/page">安全项列表页</a></dd>
                             <dd><a lay-href="/lostsafetyitem/verifySwitchList">人机验证渠道管理</a></dd>
+                            <dd><a lay-href="/area/downloadOptions">APP下载选项配置</a></dd>
                             <dd><a lay-href="/area/permission/index">IP地址限制弹窗配置</a></dd>
                     </dl>
                 </li>
@@ -319,7 +325,12 @@
                             <dd><a lay-href="/floatingWindow">浮窗管理</a></dd>
                             <dd><a lay-href="/menuConfig/appHome">APP首页配置</a></dd>
                             <dd><a lay-href="/menuConfig/helpCenter">APP教程中心</a></dd>
-                            <dd><a lay-href="/common/config">多语言 key 配置</a></dd>
+                        <dd>
+                            <a>多语言 key 配置</a>
+                            <dl class="layui-nav-child">
+                                    <dd><a lay-href="www">cn</a></dd>
+                            </dl>
+                        </dd>
                             <dd><a lay-href="/config/spotSymbol">交易对配置</a></dd>
                             <dd><a lay-href="/config/contractSpotSymbol">合约交易对配置</a></dd>
                             <dd><a lay-href="/config/systemWithdrawAddress">系统提币地址白名单</a></dd>
@@ -335,7 +346,7 @@
                             <dd><a lay-href="/floatingWindow/home_activities_float">官网首页悬浮窗配置</a></dd>
                             <dd><a lay-href="/registerRemind/register_confirm_dialog">官网注册挽留弹窗配置</a></dd>
                             <dd><a lay-href="/thirdLogin/config/ios_google_shortcut"> IOS谷歌快捷方式</a></dd>
-                            <dd><a lay-href="/menuConfig/linkPathManager">跳转路径管理</a></dd>
+                            <dd><a lay-href="/appOpenUrl/linkPathManager">跳转路径管理</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
@@ -356,9 +367,11 @@
                             <dd><a lay-href="/indexBanner">Banner</a></dd>
                             <dd><a lay-href="/mainBanner">MainBanner</a></dd>
                             <dd><a lay-href="/article">文章</a></dd>
+                            <dd><a lay-href="/copyTradingProBanner">跟单pro banner</a></dd>
+                            <dd><a lay-href="/appHomeAssetConfig/listPage">新用户转换引导</a></dd>
                             <dd><a lay-href="/articleType">文章类型</a></dd>
                             <dd><a lay-href="/community/home">社群管理</a></dd>
-                            <dd><a lay-href="/copyTradingProBanner">跟单pro banner</a></dd>
+                            <dd><a lay-href="/localAlarmPush/listPage">本地闹钟Push</a></dd>
                             <dd><a lay-href="/suggest/feedback">意见反馈列表</a></dd>
                             <dd><a lay-href="/userinfo/feedback/">意见反馈</a></dd>
                             <dd><a lay-href="/contractActivity/contractActivity">合约活动配置</a></dd>

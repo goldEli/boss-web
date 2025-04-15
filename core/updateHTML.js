@@ -6,6 +6,9 @@ const bossConfig = utils.getConfig()
 const proxy = bossConfig.proxy
 const hostname = bossConfig.proxy.replace('http://', '').replace('https://', '')
 
+const username = bossConfig.username || "admin"
+const password = bossConfig.password || "111111"
+
 function getCookie() {
     const options = {
         hostname,
@@ -48,8 +51,8 @@ function getCookie() {
         });
 
         req.write(new URLSearchParams({
-            'username': 'admin',
-            'password': '111111'
+            username,
+            password,
         }).toString());
         req.end();
     })
